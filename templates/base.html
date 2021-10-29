@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Xenopus Leavis</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='fonts/fontawesome-all.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='fonts/ionicons.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='fonts/fontawesome5-overrides.min.css') }}">    
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/styles.min.css') }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="{{ url_for('static',filename='js/funciones.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bs-init.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/Lightbox-Gallery.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/theme.js') }}"></script>
+
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+    <!--<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/4-Column-Team-Members.css">
+    <link rel="stylesheet" href="assets/css/Bootstrap-4---Photo-Gallery.css">
+    <link rel="stylesheet" href="assets/css/Bootstrap-Chat.css">
+    <link rel="stylesheet" href="assets/css/Community-ChatComments.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form.css">
+    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">  
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Ludens-Users---3-Profile.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="assets/css/Projects-Clean.css">
+    <link rel="stylesheet" href="assets/css/Projects-Horizontal.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo-1.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/User-Tasks-and-User-Activity-Streams---List-Group-Component.css">-->
+</head>
+
+<body>
+    <header class="header-blue" style="height: 100px;padding: 0px;background: var(--bs-gray-dark);">
+        <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search" style="padding: 0px 0px;">
+            <div class="container-fluid"><a class="navbar-brand" href="#" style="height: 70px;font-size: 35px;padding: 10px 10px;">Xenopus Laevis</a>
+
+                {% block busqueda %} {% endblock %}            
+                {% block botones %} {% endblock %}
+
+            </div>
+        </nav>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <span>{{ message }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}                       
+        {% endif %}
+    {% endwith %}
+
+
+    {% block contenido %}
+    {% endblock %}
+
+    
+    <footer class="footer-basic" style="height: 180px;">
+        <div class="social">
+            <a href="https://www.instagram.com/" target="_blank"><i class="icon ion-social-instagram"></i></a>
+            <a href="https://www.twitter.com/" target="_blank"><i class="icon ion-social-twitter"></i></a>
+            <a href="https://www.facebook.com/" target="_blank"><i class="icon ion-social-facebook"></i></a>
+        </div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Acerca de Xenopus Laevis</a></li>
+
+            {% block contact %} {% endblock %}
+
+            <li class="list-inline-item"><a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Términos y Condiciones</a></li>            
+        </ul>
+        <p class="copyright">Xenopus Leavis © 2021</p>
+    </footer>
+
+    <!-- Modal Acerca de -->
+    <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title" id="staticBackdropLabel">Acerca de</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body">                    
+                    <h5><strong>XENOPUS LAEVIS</strong> es una Red Social pensada y diseñada desde un concepto minimalista, 
+                    la intención es que confluyan en nuestra comunidad personas de todos los países, 
+                    que compartan sus experiencias, sus vivencias, sus viajes, sus aventuras y su vida a través de la fotografía. 
+                    </h5>
+
+                    <h5>
+                    La Red Social nace de la idea de cinco visionarios y emprendedores, amantes de 
+                    la tecnología y cansados de redes sociales monótonas y aburridas.
+                    Nuestra filosofía es "comparte con el mundo de la forma más agradable, disfrutando 
+                    cada momento con tu pasión"
+                    </h5>
+
+                    <h5>
+                    En Xenopus Laevis las personas podrán mostrar sus vidas a toda nuestra comunidad, 
+                    la cual está pensada para incluir a todos. Pero ten en cuenta que existen nuestras "normas de convivencia", 
+                    así que léelas, respétalas y disfruta sanamente de esta experiencia que acaba de emepzar.
+                    </h5>
+
+                    <h5>
+                    Recuerda que esta Red Social nace con el objetivo de unir mundos, culturas, colores, arte y todo
+                    aquello que puedas compartir y transmitir con tus fotos.
+                    </h5>
+
+                    <h5>
+                    Todos son bienvenidos, así que crea tu cuenta y corre la voz, para que tu familia,  
+                    amigos, conocidos o incluso esa persona que has visto hoy por primera vez te acompañen 
+                    en este viaje lleno de divertidas y emocionates aventuras.
+                    </h5>
+
+                    <h5>
+                        <i>Desde Xenopus Laevis con amor ;)</i>
+                    </h5>
+    
+            
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button></div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Modal Terminos y Condiciones -->
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title" id="staticBackdropLabel">Terminos y Condiciones</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body">
+                    <h5><strong>Condiciones de uso</strong></h5>
+                    Te damos la bienvenida a Xenopus Laevis
+
+                    Estas Condiciones de uso rigen el uso que haces de Xenopus Laevis, excepto en aquellos casos en los que indiquemos de forma expresa que se aplican otras disposiciones en su lugar, y proporcionan información sobre el Servicio de Xenopus Laevis (“Servicio”), en los términos descritos a continuación. Cuando creas una cuenta de Xenopus Laevis o usas la plataforma, aceptas estas condiciones. Las Condiciones del Servicio de otras Redes Sociales no se aplican a este Servicio.
+
+                    
+                    <h4></h4>
+                    <h5><strong>Servicio de Xenopus Laevis</strong></h5>
+                    Aceptamos proporcionarte el Servicio de Xenopus Laevis. El Servicio incluye todos los productos, las funciones, las aplicaciones, los servicios, las tecnologías y el software de Xenopus Laevis que ofrecemos para cumplir el propósito de la plataforma, esto es, conectarte con las personas y las cosas que te importan. El Servicio consiste en lo siguiente:
+                    Brindar oportunidades personalizadas para crear, conectarse, comunicarse, descubrir y compartir.
+                    Cada persona es distinta. En nuestro esfuerzo por contribuir a fortalecer tus relaciones, queremos hacerlo por medio de experiencias compartidas que de verdad te interesen. Con esta finalidad, creamos sistemas cuyo objetivo es intentar definir qué cosas y personas os interesan a ti y a otros, a fin de utilizar esa información para ayudarte a crear, encontrar y compartir experiencias que te sean relevantes, como también unirte a ellas. Parte de este proceso conlleva destacar contenido, funciones, ofertas y cuentas que podrían interesarte, así como ofrecerte formas de experimentar Xenopus Laevis en función de lo que tú y otras personas hacéis tanto dentro como fuera de la plataforma.
+                    Fomentar un entorno positivo, inclusivo y seguro.
+                    Desarrollamos y empleamos herramientas, y ofrecemos recursos a los miembros de nuestra comunidad para contribuir a que vivan experiencias integradoras y positivas, incluso cuando creemos que pueden necesitar ayuda. También contamos con equipos y sistemas cuyo propósito es combatir el abuso y las infracciones de nuestras Condiciones y políticas, así como erradicar comportamientos dañinos y engañosos. Utilizamos toda la información de que disponemos, incluida la tuya, para proteger nuestra plataforma. Asimismo, es posible que compartamos información sobre usos incorrectos o contenido dañino con otras empresas de Facebook o las autoridades policiales. Obtén más información en la Política de datos.
+                    Desarrollar y utilizar tecnologías que nos ayuden a ofrecer servicios de forma continua a nuestra comunidad en constante crecimiento.
+                    Para ofrecer nuestro Servicio en condiciones óptimas, es fundamental organizar y analizar la información de nuestra creciente comunidad. Gran parte de nuestro Servicio consiste en crear y usar tecnologías de vanguardia que nos ayuden a personalizar, proteger y mejorar nuestro Servicio a gran escala, de forma que pueda estar disponible para una amplia comunidad internacional. Tecnologías como la inteligencia artificial y el aprendizaje automático nos permiten aplicar procesos complejos a todos nuestros Servicios. Estas tecnologías automatizadas también posibilitan que podamos garantizar la funcionalidad e integridad de dicho Servicio.
+                    Proporcionar experiencias coherentes y fluidas en los distintos Productos de las empresas de Facebook.
+                    Xenopus Laevis forma parte de las empresas de Facebook, entre las que se comparten tecnologías, sistemas, estadísticas e información (incluidos datos que poseemos sobre ti; consulta la Política de datos para obtener más información) a fin de proporcionar servicios mejores y más seguros. También proporcionamos formas de interactuar con los Productos de las empresas de Facebook que utilizas, y disponemos de sistemas diseñados para ofrecer una experiencia coherente y fluida en dichos productos.
+                    Garantizar el acceso a nuestro Servicio.
+                    En aras del funcionamiento de nuestro Servicio mundial, debemos almacenar datos en nuestros sistemas en todo el mundo, incluidos los ubicados en lugares distintos de tu país de residencia, y transferir información entre dichos sistemas. El uso de esta infraestructura global resulta necesario y esencial para prestar nuestro Servicio. Dicha infraestructura puede ser propiedad de Facebook, Inc., Facebook Ireland Limited o sus filiales, o estar dirigida por ellas.
+                    Conectarte con marcas, productos y servicios de formas que te resulten relevantes.
+                    Utilizamos datos de Xenopus Laevis y de otros Productos de las empresas de Facebook, así como de socios externos, para mostrarte anuncios, ofertas y otro contenido patrocinado que creemos que te puede interesar. Intentamos que este contenido te resulte tan relevante como el resto de las experiencias en Xenopus Laevis.
+                    Investigar e innovar.
+                    Usamos la información de la que disponemos para estudiar nuestro Servicio y colaborar con otras partes en la realización de investigaciones que nos permitan mejorarlo y contribuir al bienestar de nuestra comunidad.
+                    
+                    <h4></h4>
+                    <h5><strong>Política de datos</strong></h5>
+                    Para proporcionar nuestro Servicio, debemos recopilar y usar tu información. En la Política de datos se explica cómo recopilamos, usamos y compartimos información en los Productos de Facebook. También se detallan las formas en que puedes controlar tu información, por ejemplo, desde la configuración de seguridad y privacidad de Xenopus Laevis. Debes aceptar la Política de datos para usar Xenopus Laevis.
+
+                    <h4></h4>
+                    <h5><strong>Compromisos que asumes</strong></h5>
+                    Nosotros te proporcionamos el Servicio a cambio de que asumas los siguientes compromisos.
+                    Quién puede usar Xenopus Laevis. Queremos que nuestro Servicio sea lo más inclusivo y abierto posible, pero también que sea seguro y conforme a la ley. Por este motivo, si quieres formar parte de la comunidad de Xenopus Laevis, es necesario que aceptes algunas restricciones.
+                    Debes tener la edad legal mínima permitida en tu país (14 años en el caso de España).
+                    No debes tener antecedentes que indiquen que se te ha prohibido utilizar algún aspecto de nuestro Servicio en virtud de la legislación aplicable o usar servicios relacionados con los pagos si apareces en una lista de personas o empresas con las que el comercio esté prohibido o restringido.
+                    Tu cuenta no debe haberse inhabilitado anteriormente a causa de una infracción de la ley o de cualquiera de nuestras políticas.
+                    No puedes haber sido condenado por delitos sexuales.
+                    Restricciones en cuanto al uso de Xenopus Laevis. Todos debemos poner de nuestra parte para que la comunidad cuente con un Servicio abierto y seguro.
+                    No suplantes a otras personas ni nos proporciones información incorrecta.
+                    Aunque no es necesario que reveles tu identidad en Xenopus Laevis, debes facilitarnos información precisa y actualizada (incluidos los detalles de registro), lo cual puede implicar que debas facilitarnos datos personales. Asimismo, no puedes suplantar a ninguna otra persona o entidad ni crear una cuenta en nombre de otro usuario (a menos que cuentes con su permiso expreso).
+                    No realices actividades ilegales, engañosas o fraudulentas, ni con fines ilegales o no autorizados.
+                    No puedes infringir estas Condiciones ni nuestras políticas (ni ayudar o animar a otras personas a hacerlo), especialmente las Normas comunitarias de Xenopus Laevis, las Condiciones de la plataforma de Facebook, las Políticas para desarrolladores y las Normas sobre música.
+                    Si publicas contenido protegido por derechos de marca, debes cumplir con nuestras Políticas de contenido protegido por derechos de marca, en las que se indica la obligación de utilizar la herramienta de nuestra propiedad diseñada específicamente para este tipo de contenido. Puedes obtener información sobre cómo denunciar contenido o comportamientos inapropiados en nuestro servicio de ayuda.
+                    No puedes realizar ninguna acción que interfiera con el Servicio o impida que funcione como está previsto.
+                    Dichas acciones incluyen el uso indebido de cualquier canal de denuncia, reclamación o apelación (por ejemplo, la interposición de denuncias o apelaciones fraudulentas o carentes de fundamento).
+                    No intentes recopilar información o acceder a ella, ni crear cuentas valiéndote de medios no autorizados.
+                    Esto incluye crear cuentas o recopilar información por medios automatizados sin nuestro permiso expreso.
+                    No puedes vender ni adquirir cuentas o datos que hayas obtenido a través de nosotros o nuestro Servicio, ni tampoco conceder licencias en relación con ellos.
+                    Esto incluye cualquier intento de comprar, vender o transferir cualquier aspecto de tu cuenta (incluido el nombre de usuario); de solicitar, recopilar o utilizar insignias o credenciales de otros usuarios; de solicitar o recopilar nombres de usuario o contraseñas de Xenopus Laevis, o de apropiarse indebidamente de identificadores de acceso.
+                    No puedes publicar información privada o confidencial de otra persona sin su permiso ni realizar acciones que vulneren los derechos de terceros, incluidos los de propiedad intelectual e industrial (por ejemplo, infracciones relacionadas con los derechos de autor o marca, falsificaciones o artículos pirateados).
+                    Puedes utilizar la obra de otra persona de conformidad con las limitaciones o excepciones establecidas en la legislación sobre derechos de autor y otros derechos relacionados, en el marco de la normativa aplicable. Representas a tu propia persona o has obtenido todos los derechos necesarios en relación con el contenido que publicas o compartes. Obtén más información sobre cómo puedes denunciar contenido que consideras que infringe tus derechos de propiedad intelectual, entre otros asuntos relacionados, aquí.
+                    No modifiques o traduzcas nuestros productos ni sus componentes. Tampoco crees obras derivadas de ellos ni les apliques ingeniería inversa.
+                    No utilices una URL o un nombre de dominio en tu nombre de usuario sin tener nuestro consentimiento previo por escrito.
+                    Permisos que nos concedes. Como parte de nuestro acuerdo, también nos concedes los permisos necesarios para proporcionarte el Servicio.
+                    No reclamamos la propiedad de tu contenido, pero nos concedes una licencia para usarlo.
+                    No cambian tus derechos en relación con el contenido. No reclamamos la propiedad del contenido que publicas en el Servicio o a través de él, y puedes compartirlo con quien estimes conveniente donde lo consideres oportuno. No obstante, debes concedernos ciertos permisos legales (“licencia”) para que podamos prestar el Servicio. Cuando compartes, publicas o subes contenido protegido por derechos de propiedad intelectual e industrial (como fotos o vídeos) en nuestro Servicio o en relación con este, de conformidad con el presente acuerdo, nos concedes una licencia mundial, no exclusiva, transferible, sublicenciable y exenta de pagos por derechos de autor para alojar, utilizar, distribuir, modificar, mantener, reproducir, traducir y mostrar o comunicar públicamente tu contenido, así como para crear obras derivadas (de acuerdo con tu configuración de privacidad y de la aplicación). La licencia se extinguirá cuando el contenido se elimine de nuestros sistemas. El contenido puede borrarse de manera parcial o total (si se elimina la cuenta). Encontrarás más información sobre el uso que hacemos de la información y cómo controlar o eliminar tu contenido en la Política de datos y el servicio de ayuda de Xenopus Laevis.
+                    Permiso para usar tu nombre de usuario, tu foto del perfil e información sobre tus relaciones y las acciones que realizas en cuentas, anuncios y contenido patrocinado.
+                    Nos concedes permiso para mostrar tu nombre de usuario, tu foto del perfil e información sobre las acciones que realizas (como los “Me gusta”) o tus relaciones (como los seguidores) junto a cuentas, anuncios, ofertas y otro contenido patrocinado (o en relación con ellos) que sigues o con los que interactúas y que se muestran en los Productos de Facebook, sin obtener compensación alguna a cambio. Por ejemplo, podemos mostrar que has indicado que te gusta una publicación patrocinada creada por una marca que nos ha pagado para que mostremos sus anuncios en Xenopus Laevis. Del mismo modo que ocurre con los seguidores de otras cuentas y las acciones realizadas en otro contenido, solo las personas que tengan permiso para ver dicho contenido o dichos seguidores podrán ver los seguidores de cuentas patrocinadas y las acciones efectuadas en contenido patrocinado. También respetaremos tu configuración de anuncios. Obtén más información sobre la configuración de anuncios aquí.
+                    Aceptas que podemos descargar e instalar actualizaciones del Servicio en tu dispositivo.
+
+                    <h4></h4>
+                    <h5><strong>Derechos adicionales que nos reservamos</strong></h5>
+                    Si seleccionas un nombre de usuario o identificador similar para tu cuenta, nos reservamos el derecho a cambiarlo si lo consideramos necesario o conveniente (por ejemplo, si infringe los derechos de propiedad intelectual o industrial de otra persona o sirve para hacerte pasar por otro usuario).
+                    Nos reservamos todos los derechos respecto del contenido protegido por derechos de propiedad intelectual o industrial (de nuestra pertenencia) que ponemos a disposición en nuestro Servicio (como imágenes, diseños, vídeos o sonido que ofrecemos) y que tú añades al contenido que creas o compartes. Tú conservarás los derechos de propiedad intelectual o industrial relativos a tu contenido.
+                    Solo puedes usar nuestro contenido sujeto a propiedad intelectual o industrial, o nuestras marcas comerciales o similares según lo establecido en nuestras Normas de uso de marcas, o bien con nuestro consentimiento por escrito.
+                    Debes obtener nuestro permiso por escrito o contar con permiso en virtud de una licencia de código abierto para modificar, descompilar o intentar extraer de algún otro modo nuestro código fuente, así como para crear obras derivadas a partir de él.
+
+                    <h4></h4>
+                    <h5><strong>Eliminación de contenido, e inhabilitación o cancelación de la cuenta</strong></h5>
+                    Podemos eliminar cualquier contenido o información que compartas en el Servicio si consideramos que infringe estas Condiciones de uso o nuestras políticas (incluidas nuestras Normas comunitarias de Xenopus Laevis), o si la ley así lo exige o nos lo permite. Podemos negarnos a proporcionarte la totalidad o una parte del Servicio, así como cancelar o deshabilitar el acceso del que dispones a los Productos de Facebook y a los Productos de las empresas de Facebook, de forma inmediata, para proteger nuestra comunidad o nuestros servicios; si tu conducta supone un riesgo para nosotros (especialmente a efectos jurídicos), incumples estas Condiciones de uso o nuestras políticas (incluidas nuestras Normas comunitarias de Xenopus Laevis) o infringes de forma reiterada los derechos de propiedad intelectual e industrial de otras personas; o si la ley así lo exige o nos lo permite. También podemos cancelar o modificar el Servicio, eliminar o bloquear contenido o información que se comparta en él o dejar de proporcionarlo, de manera total o parcial, si determinamos que hacerlo es razonablemente necesario para evitar o minimizar consecuencias legales o normativas adversas para nosotros. Si crees que la cancelación de tu cuenta es un error, deseas inhabilitarla o eliminarla con carácter permanente, consulta nuestro servicio de ayuda. A partir del momento en el que solicites la eliminación del contenido o de la cuenta, el proceso de eliminación se iniciará automáticamente en un plazo no superior a 30 días a partir de tu solicitud. Una vez iniciado el proceso de eliminación, el contenido puede tardar hasta 90 días en eliminarse. Aunque el contenido deja de estar visible para el resto de los usuarios mientras se lleva a cabo el proceso de eliminación, el mismo sigue estando sujeto a estas Condiciones de uso y a nuestra Política de datos. Una vez eliminado el contenido, podemos tardar hasta 90 días adicionales en eliminarlo de nuestros sistemas de recuperación ante desastres y copias de seguridad.
+                    El contenido no se borrará a los 90 días de iniciarse su proceso de eliminación o el de la cuenta en las siguientes situaciones:
+                    Otras personas han usado tu contenido de conformidad con lo establecido en esta licencia y no lo han eliminado (en cuyo caso, esta licencia seguirá en vigor hasta que el contenido se elimine).
+                    No puede completarse la eliminación en un plazo de 90 días debido a limitaciones técnicas en nuestros sistemas (en cuyo caso, se efectuará a la mayor brevedad en cuanto sea técnicamente posible).
+                    La eliminación restringe nuestra capacidad de realizar las siguientes acciones:
+                    Investigar o detectar prácticas ilegales o infracciones de nuestras condiciones y políticas (por ejemplo, el uso indebido de nuestros productos o sistemas).
+                    Velar por la seguridad y protección de nuestros productos, sistemas y usuarios.
+                    Cumplir con cualquier obligación legal, como la conservación de pruebas.
+                    Cumplir con los requerimientos de autoridades judiciales, administrativas o policiales, así como de organismos gubernamentales.
+                    En los supuestos referidos, el contenido se almacenará durante el tiempo necesario (en función de cada caso) para cumplir los objetivos con los que se ha conservado.
+                    Si eliminas o inhabilitas tu cuenta, estas Condiciones dejarán de constituir un acuerdo en vigor entre tú y nosotros, aunque tanto la presente sección como la siguiente (“Nuestro acuerdo y qué ocurre si se produce una disputa”) seguirán siendo de aplicación, incluso si decides cancelar, inhabilitar o eliminar tu cuenta.
+
+                    <h4></h4>
+                    <h5><strong>Nuestro acuerdo y qué ocurre si se produce una disputa</strong></h5>
+                    Nuestro acuerdo.
+                    Tu uso de contenido de música en el Servicio quedará sujeto a nuestras Normas sobre música. Asimismo, en caso de que utilices nuestra API, deberás cumplir nuestras Políticas para desarrolladores y Condiciones de la plataforma de Facebook. Para poder hacer uso de determinadas funciones o servicios relacionados es necesaria la aceptación de condiciones adicionales, que se pondrán a tu disposición e integrarán en nuestro acuerdo. Por ejemplo, si utilizas funciones de pago, se te pedirá que aceptes las Condiciones de pago de la comunidad. Si alguna de esas condiciones entra en conflicto con este acuerdo, prevalecerán dichas condiciones.
+                    Si cualquier parte de este acuerdo no fuese válida, la parte restante seguirá siendo aplicable.
+                    Cualquier enmienda o renuncia a nuestro acuerdo deberá hacerse por escrito y contar con nuestra firma. Si no hiciésemos cumplir alguna parte de este acuerdo, no se considerará una renuncia por nuestra parte.
+                    Nos reservamos todos los derechos que no te hayamos concedido de forma expresa.
+                    Quién es titular de los derechos en virtud de este acuerdo.
+                    Este acuerdo no confiere derechos a terceros.
+                    No puedes transferir ninguno de los derechos u obligaciones que se te confieren a través de este acuerdo sin nuestro consentimiento.
+                    Nuestros derechos y obligaciones pueden asignarse a otras partes. Por ejemplo, en caso de producirse un cambio de titularidad (es decir, si se efectúa una fusión, adquisición o venta de activos) o si la ley así lo exige.
+                    
+                    <h4></h4>
+                    <h5><strong>Quién asume la responsabilidad si ocurre algo</strong></h5>
+                    Nuestro Servicio se proporciona “tal cual”, y no podemos garantizar que sea seguro y funcione correctamente en todo momento. EN LA MEDIDA EN QUE LA LEY LO PERMITA, NOS EXIMIMOS DE TODA RESPONSABILIDAD, YA SEA EXPLÍCITA O IMPLÍCITA, INCLUIDAS LAS GARANTÍAS IMPLÍCITAS DE COMERCIALIZACIÓN, ADECUACIÓN A UN USO CONCRETO, TÍTULO Y NO INFRACCIÓN.
+                    Asimismo, no tenemos control sobre lo que las personas hacen o dicen, por lo que no somos responsables de sus comportamientos o acciones (ya sea dentro o fuera de internet) o su contenido (incluido aquel que pueda resultar ilegal o cuestionable), así como tampoco somos responsables de los tuyos. Del mismo modo, no asumimos responsabilidad alguna por los servicios y las funciones que otras personas o empresas ofrecen, incluso si accedes a ellos a través de nuestro Servicio.
+                    Nuestra obligación en cuanto a lo que ocurra en el Servicio (“responsabilidad”) quedará limitada en la medida que la ley lo permita. De producirse un problema con nuestro Servicio, nos es imposible determinar cuáles podrían ser todas las posibles consecuencias. Aceptas que no somos responsables ante ti por la pérdida de ganancias, ingresos, información o datos, así como por daños consecuentes, especiales, indirectos, ejemplares, punitivos o incidentales derivados de estas Condiciones, o en relación con ellas, incluso si somos conscientes de que pueden producirse. Entre estos casos se incluye la eliminación de tu contenido, tu información o tu cuenta.
+                    Cómo resolveremos las disputas.
+                    Si eres consumidor, las leyes del país donde resides se aplicarán a cualquier reclamación, causa o conflicto (“reclamación”) que inicies contra nosotros y que surja como consecuencia de estas Condiciones, o en relación con ellas. Asimismo, puedes resolver la reclamación en cualquier tribunal competente del país que tenga jurisdicción. En los demás casos, aceptas que se resuelva exclusivamente en el Tribunal Federal del Distrito Norte de California de los Estados Unidos o en un tribunal estatal ubicado en el condado de San Mateo. También aceptas someterte a la jurisdicción personal de cualquiera de estos tribunales con el propósito de litigar cualquier reclamación, y aceptas que estas Condiciones, así como cualquier reclamación, se rigen por las leyes del estado de California (independientemente de las disposiciones relativas a conflictos de derecho). Sin perjuicio de lo anterior, aceptas que, bajo su criterio exclusivo, Facebook Inc. puede presentar cualquier reclamación que tengamos contra ti relacionada con intentos de hacer un uso abusivo de nuestros productos o de interferir o interactuar con ellos de una forma no autorizada en el país en el que residas, siempre que tenga jurisdicción sobre dicha reclamación.
+                    Material no solicitado.
+                    Los comentarios y las sugerencias son siempre bienvenidos. No obstante, podemos usarlos sin restricción alguna ni obligación de compensarte por ellos. Tampoco tenemos el deber de considerarlos como confidenciales.
+
+                    <h4></h4>
+                    <h5><strong>Actualización de estas Condiciones</strong></h5>
+                    Es posible que modifiquemos nuestro Servicio y nuestras políticas y que, en consecuencia, debamos actualizar estas Condiciones para que reflejen dichos Servicios y dichas políticas con precisión. A menos que la ley disponga lo contrario, te enviaremos una notificación (por ejemplo, mediante nuestro Servicio) antes de modificar estas Condiciones, de modo que puedas consultar los cambios antes de que entren en vigor. El uso del Servicio después de esta fecha supondrá la aceptación de las modificaciones efectuadas. Si no quieres aceptar estas disposiciones o las Condiciones actualizadas, puedes eliminar tu cuenta aquí.
+
+                    <h4></h4>
+                    <h5><strong><i> Última revisión: 20 de octubre de 2021 </i></strong></h5>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">cerrar</button></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

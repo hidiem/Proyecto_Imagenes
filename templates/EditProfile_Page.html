@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/" method="POST">
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px; ">Regresar al Home</button> 
+    </form>
+{% endblock %}
+
+
+{% block contenido %}
+    <section class="register-photo" style="height: auto;padding: 50px;">
+       
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col text-center" style="margin-top: 20px;"><h2 style="font-size: 24px;">Mis Datos</h2></div>
+                        </div>
+                        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col-sm-6 col-lg-4" style="width: 750.656px;">
+                                <div class="card clean-card text-center">
+                                    <img class="card-img-top w-100 d-block" src="data:;base64,{{ image }}" style="padding: 20px; ">
+                                    <div class="card-body info">
+                                        <div class="row" style="margin-top: -24px;">
+                                            <form class="col-md-4" action="", method="POST", id="formulario_update" style="margin-top: 22px; padding: 10px" enctype=multipart/form-data>
+
+                                                <!--AQUI LA IMAGEN-->
+                                                <div class="row">
+                                                    <div class="mb-3">
+                                                        <label for="file" class="form-label"><strong>Selecionar nueva imagen</strong></label>   
+                                                        {{ form.picture(class="form-control", value="Hola", type="file", id="file", style="display:block;") }}                                                         
+                                                      </div>
+                                                </div> 
+                                                
+                                                <br>
+                                                <br>                                                
+                                                
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Nombre</strong></p></div>
+                                                    <!--<div class="col"><input type="text" value="Nombre Usuario" style="width: 200px;"></div>-->
+                                                    <div class="col"><p class="labels">{{ form.name(type="text", style="width: 220px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Usuario</strong></p></div>
+                                                    <!--<div class="col"><input type="text" value="User_1" style="width: 200px;"></div>-->
+                                                    <div class="col"><p class="labels">{{ form.user(type="text", style="width: 220px;", readonly="") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Email</strong></p></div>
+                                                    <!--<div class="col"><input type="text" value="user@email.com" style="width: 200px;" readonly="" disabled=""></div>-->
+                                                    <div class="col"><p class="labels">{{ form.email(type="text", style="width: 220px;", readonly="") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Contraseña</strong></p></div>
+                                                    <!--<div class="col"><input type="password" value="user1" style="width: 200px;"></div>-->
+                                                    <div class="col"><p class="labels">{{ form.password(type="password", style="width: 220px;", placeholder="Escriba su contraseña") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Fecha Nacimiento</strong></p></div>
+                                                    <!--<div class="col"><input type="date" value="01 / 01 / 1990" style="width: 200.188px;"></div>-->
+                                                    <div class="col"><p class="labels">{{ form.date(type="date", style="width: 220px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Genero</strong></p></div>
+                                                    <!--<div class="col"><input type="text" value="Masculino" style="width: 200px;"></div>-->
+                                                    <div class="col"><p class="labels">{{ form.gender(type="text", style="width: 220px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Descripción</strong><br></p></div>
+                                                    <!--<div class="col"><textarea style="width: 200px;height: 80px;">Lorem ipsum dolor sit amet, consectetur adiposicing elit</textarea></div>-->
+                                                    <div class="col"><p class="labels">{{ form.description(type="text", style="width: 220px;height: 80px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Localización</strong><br></p></div>
+                                                    <!--<div class="col"><input type="text" value="Colombia (Co)" style="width: 200px;"></div>-->
+                                                    <div class="col"><p class="labels">{{ form.localization(type="text", style="width: 220px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div>
+                                                            {{ form.update(class="btn btn-success", type="submit", style="margin-top:10px; border-radius: 10px;background: var(--bs-primary);border-color: var(--bs-blue);color: var(--bs-light);") }}
+                                                            <!--<a class="btn btn-success" role="button" href="/profile" style="background: var(--bs-red);border-color: var(--bs-red);border-radius: 10px;color: var(--bs-white);"><i class="far fa-times-circle"></i>&nbsp;Cancelar</a>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-6">
+                        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col text-center" style="margin-top: 20px;"><h2 style="font-size: 24px;">Mis Publicaciones</h2></div>
+                        </div>
+                        <section class="photo-gallery" style="margin-top: 0px;">
+                            <div class="container-fluid" style="padding: 0px;">
+                                <div class="row mt-4 text-center" style="margin-top:0px !important; margin-left:15px;">
+                                    {% if rows|length == 0 %}
+                                        <div>
+                                            <h4 style="margin-top: 10px;">No tienes publicaciones aún, crea tu primera publicación ;)</h4>                                            
+                                        </div>
+                                    {% endif %}
+                                    {% for row in rows %}
+                                        <div class="item col-sm-2 col-md-5 mb-3" style="padding: 0px; margin:15px;">
+                                            <div>
+                                                <h6 data-id="modal_body" style="margin-top: 10px;">{{ row['Post_title'] }}</h6>                                            
+                                                <img src="data:;base64,{{ lista_Fotos[ row['Post_ID'] ] }}" width="100%" height="100%" class="gallery-item" alt="gallery">       
+                                            </div>                                     
+                                        </div>                                        
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-md-12"><a class="btn btn-success" role="button" href="/create_post" style="width: auto;height: 50px;margin:12px;border-radius: 10px; margin-top:30px; display: block; background: var(--bs-primary);border-color: var(--bs-blue);color: var(--bs-light);"><i class="fas fa-photo-video"></i>&nbsp;CREAR PUBLICACION</a></div>
+                                </div>
+                            </div>
+                        </section>                         
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="gallery-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <img style="height: 100px; width: 100px; padding: 10px;" class="rounded-circle" src="data:;base64,{{ image }}" alt="modal header">    
+                                    <div class="row" style="padding: 15px;">                
+                                        <h5 class="modal-title row" id="exampleModalLabel">{{ User_Nombre }}</h5>                                        
+                                            <h6 class="modal-body"></h6>                                                                               
+                                    </div>                   
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="" class="modal-img img-fluid img-center" style="display: block;" alt="modal img">
+                                </div>                          
+                            </div>
+                            </div>
+                        </div>                        
+                    </div>                    
+
+                    <style>
+                        .img-center {
+                          display: block;
+                          margin-left: auto;
+                          margin-right: auto;
+                      }
+                    </style>                    
+        
+    </section>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/" method="POST">
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px; ">Regresar al Home</button> 
+    </form>
+{% endblock %}
+
+
+{% block busqueda %}
+  <div class="card clean-card text-center" style="background-color:transparent;box-shadow: none;border:0px;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+      <div class="container">
+        <form class="me-auto search-form" action="" method="POST" id="formulario_search_home">
+            <div class="d-flex align-items-center">
+                {{ form.user_search(class="form-control search-field", type="text", id="search-field", style="color:gray; min-width:250px; padding:6px;background: var(--bs-gray-200);border-radius: 20px;") }}
+                {{ form.search(class="btn btn-light action-button", type="submit", style="margin-bottom: 0;") }}
+            </div>
+        </form>            
+      </div>
+    </nav>
+  </div>  
+{% endblock %}
+
+
+{% block contenido %}
+    <section class="login-clean" style="height: aunto;min-height: 680px;padding: 50px 0px;">
+        <div class="container">
+            <div class="row">
+                {% for row in rows %}
+                <div class="col-md-6" style="padding: 10px;">
+                    <ul class="list-group" style="padding: 5px;">
+                        <li class="list-group-item">
+                            <div class="d-flex media">
+                                <div class="media-body">
+                                    <div class="d-flex media" style="overflow:visible;">
+                                        <div><img class="me-3" style="width: 40px; height:40px;" src="data:;base64,{{ lista_Fotos[ row['User'] ] }}"></div>
+                                        <div style="overflow:visible;" class="media-body">
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <h5><a href="/user/{{ row['User'] }}"><strong>{{ row["Name"] }}</strong></a></h5>
+                                                    <p>Conéctate con {{ row["Name"] }} para compartir fotos y enviar mensajes<br>
+                                                    <small class="text-muted"><strong>Descripción: </strong>{{ row["Description"] }}</small></p>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="btn-group"><button class="btn btn-secondary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Acciones</button>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item" href="/user/{{ row['User'] }}"><i class="fa fa-user fa-fw"></i>Ver Perfil</a>
+                                                            <a class="dropdown-item" href="/mensaje_send/{{ row['User'] }}"><i class="fa fa-send fa-fw"></i>Enviar Mensaje</a>
+                                                            <a><hr class="dropdown-divider"></a>
+                                                            {% if User_Rol == 1 or User_Rol == 2 %}
+                                                                <a class="dropdown-item" href="/delete_user/{{ row['User'] }}"><i class="fa fa-trash-o fa-fw"></i>Eliminar Usuario</a>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

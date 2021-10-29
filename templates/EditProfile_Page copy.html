@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/" method="POST">
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px;">Regresar al Home</button> 
+    </form>
+{% endblock %}
+
+
+{% block contenido %}
+    <section class="register-photo" style="height: auto;padding: 50px;">
+        <div class="form-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col text-center" style="margin-top: 20px;"><h2 style="font-size: 24px;">Mis Datos</h2></div>
+                        </div>
+                        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col-sm-6 col-lg-4" style="width: 750.656px;">
+                                <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="data:;base64,{{ image }}" style="padding: 20px;">
+                                    <div class="card-body info">
+                                        <div class="row" style="margin-top: -24px;">
+                                            <form action="/profile/edit", method="POST", id="formulario_update" style="margin-top: 22px;" enctype=multipart/form-data>
+
+                                                <!--AQUI LA IMAGEN-->
+                                                <div class="row">
+                                                    <div class="mb-3">
+                                                        <label for="file" class="form-label">Selecionar nueva imagen</label><br>     
+                                                        {{ form.picture(class="form-control", value="Hola", type="file", id="file", style="width:200px; display:block;") }}                                                         
+                                                      </div>
+                                                </div>           
+                                                
+                                                
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Nombre</strong></p></div>
+                                                    <!--<div class="col"><input type="text" value="Nombre Usuario" style="width: 200px;"></div>-->
+                                                    <div class="col">{{ form.name(type="text", style="width: 200px;") }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Usuario</strong></p></div>
+                                                    <!--<div class="col"><input type="text" value="User_1" style="width: 200px;"></div>-->
+                                                    <div class="col">{{ form.user(type="text", style="width: 200px;", readonly="") }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Email</strong></p></div>
+                                                    <!--<div class="col"><input type="text" value="user@email.com" style="width: 200px;" readonly="" disabled=""></div>-->
+                                                    <div class="col">{{ form.email(type="text", style="width: 200px;", readonly="", disabled="") }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Contraseña</strong></p></div>
+                                                    <!--<div class="col"><input type="password" value="user1" style="width: 200px;"></div>-->
+                                                    <div class="col">{{ form.password(type="password", style="width: 200px;") }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Fecha Nacimiento</strong></p></div>
+                                                    <!--<div class="col"><input type="date" value="01 / 01 / 1990" style="width: 200.188px;"></div>-->
+                                                    <div class="col">{{ form.date(type="date", style="width: 200px;") }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Genero</strong></p></div>
+                                                    <!--<div class="col"><input type="text" value="Masculino" style="width: 200px;"></div>-->
+                                                    <div class="col">{{ form.gender(type="text", style="width: 200px;") }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Descripción</strong><br></p></div>
+                                                    <!--<div class="col"><textarea style="width: 200px;height: 80px;">Lorem ipsum dolor sit amet, consectetur adiposicing elit</textarea></div>-->
+                                                    <div class="col">{{ form.description(type="text", style="width: 200px;height: 80px;") }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Localización</strong><br></p></div>
+                                                    <!--<div class="col"><input type="text" value="Colombia (Co)" style="width: 200px;"></div>-->
+                                                    <div class="col">{{ form.localization(type="text", style="width: 200px;") }}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div>
+                                                            {{ form.update(class="btn btn-success", type="submit", style="margin-top:5px; border-radius: 10px;color: var(--bs-white);") }}
+                                                            <!--<a class="btn btn-success" role="button" href="/profile" style="background: var(--bs-red);border-color: var(--bs-red);border-radius: 10px;color: var(--bs-white);"><i class="far fa-times-circle"></i>&nbsp;Cancelar</a>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col text-center" style="margin-top: 20px;"><h2 style="font-size: 24px;">Mis Publicaciones</h2></div>
+                        </div>
+                        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col-sm-6 col-lg-4" style="width: 640.656px;">
+                                <div class="card clean-card text-center">
+                                    <section class="photo-gallery">
+                                        <div class="container">
+                                            <div class="row photos" data-bss-baguettebox="">
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/desk.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/building.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/loft.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/building.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/loft.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/desk.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/loft.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/desk.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/building.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/desk.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/building.jpg') }}"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: auto;"><a><img class="img-fluid" src="{{ url_for('static', filename='img/loft.jpg') }}"></a></div>
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col-md-12"><a class="btn btn-success" role="button" href="/create_post" style="width: 220.141px;height: 50px;margin-top: 12px;padding-top: 12px;border-radius: 10px;color: var(--bs-white);"><i class="fas fa-photo-video"></i>&nbsp;CREAR PUBLICACION</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/login" method="GET"> 
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px; width:150px;">Log In</button>
+    </form>
+{% endblock %}
+
+
+{% block contenido %}
+    <section class="register-photo" style="height: 900px;padding: 50px;">
+        <div class="form-container">
+            <div class="image-holder" style="width: 500px;height: 500px;"></div>
+            <form action="#" id="formulario_signup" method="POST" id="formulario_signup" style="width: 450px;height: 700px;">
+                <!--<h2 class="text-center"><strong>Crear</strong>&nbsp;cuenta</h2>
+                <div class="mb-3"><input class="form-control" type="text" placeholder="Nombre Completo"></div>
+                <div class="mb-3"><input class="form-control" type="text" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="right" placeholder="Usuario" title="El usuario solo puede estar formado por letras y numeros, sin espacios"></div>
+                <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Correo electronico"></div>
+                <div class="mb-3"><input class="form-control" type="password" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="right" name="password" placeholder="Contraseña" title="La contraseña debe tener minimo 8 caracteres y por lo menos un numero y una letra"></div>
+                <div class="mb-3"><input class="form-control" type="password" name="password-repeat" placeholder="Contraseña (repetir)"></div>
+                <div class="mb-3"><label class="form-label">Fecha de nacimiento</label><input class="form-control" type="date"></div>
+                <div class="mb-3"><label class="form-label">Genero</label>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" id="genero">Masculino</label></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" id="genero">Femenino</label></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" id="genero">Otro</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3"><div class="form-check"><label class="form-check-label"><input class="form-check-input" type="checkbox">Estoy de acuerdo con los términos y condiciones</label></div></div>
+                <div class="mb-3"><a class="btn btn-primary d-block w-100" role="button" href="/register">Crear cuenta</a></div>
+                <div class="mb-3"><a class="already" href="/login">Ya tienes una cuenta? Login aqui.</a></div>-->
+                
+                <h2 class="text-center"><strong>Crear</strong>&nbsp;cuenta</h2>
+                <div class="mb-3">{{ form.name(class="form-control", type="text", id="name", placeholder="Nombre Completo") }}</div>
+                <div class="mb-3">{{ form.user(class="form-control", type="text", id="user", placeholder="Usuario", title="El usuario solo puede estar formado por letras y numeros, sin espacios") }}</div>
+                <div class="mb-3">{{ form.email(class="form-control", type="email", id="email", placeholder="Correo electronico") }}</div>
+                <div class="mb-3">{{ form.password(class="form-control", type="password", id="password", placeholder="Contraseña", title="La contraseña debe tener minimo 8 caracteres y por lo menos un numero y una letra") }}</div>
+                <div class="mb-3">{{ form.password2(class="form-control", type="password", id="password-repeat", placeholder="Contraseña (repetir)") }}</div>
+                <div class="mb-3"><label class="form-label">Fecha de nacimiento</label>{{ form.date(class="form-control", type="date") }}</div>
+                <div class="mb-3"><label class="form-label">Genero</label>{{ form.gender(class="form-control") }}</div>                   
+               
+                <div class="mb-3"><div class="form-check"><label class="form-check-label"><input class="form-check-input" type="checkbox">Estoy de acuerdo con los términos y condiciones</label></div></div>
+                <div class="mb-3">{{ form.signup(class="btn btn-primary d-block w-100 nav-link active", type="submit", style="border-radius: 10px;") }}</div>
+                <div class="mb-3"><a class="already" href="/login">Ya tienes una cuenta? Login aqui.</a></div>
+
+            </form>
+        </div>
+        <div></div>
+    </section>      
+{% endblock %}
+
+
+{% block contact %} 
+    <li class="list-inline-item"><a href="/contact">Contáctenos</a></li>
+{% endblock %}

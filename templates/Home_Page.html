@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/logout" method="POST">
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px; width:150px;">Cerrar Sesión</button> 
+    </form>
+{% endblock %}
+
+
+{% block busqueda %}
+  <div class="card clean-card text-center" style="background-color:transparent;box-shadow: none;border:0px;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+      <div class="container">
+        <form class="me-auto search-form" action="" method="POST" id="formulario_search_home">
+          <div class="d-flex align-items-center">
+            {{ form.user_search(class="form-control search-field", type="text", id="search-field", style="color:gray; min-width:250px; padding:6px;background: var(--bs-gray-200);border-radius: 20px;") }}
+            {{ form.search(class="btn btn-light action-button", type="submit", style="margin-bottom: 0;") }}
+          </div>
+        </form>            
+      </div>
+    </nav>
+  </div>  
+{% endblock %}
+
+
+{% block contenido %}
+    <section class="register-photo" style="height: auto;padding: 50px;">
+      <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <main class="page" style="min-height: 100%;">
+                    <section class="clean-block about-us">
+                        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col text-center" style="margin-top: 20px;">
+                                <h2 style="font-size: 24px;">Mis Datos</h2>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col-sm-6 col-lg-4" style="width: 400.656px;">
+                                <div class="card clean-card text-center">
+                                  <img class="card-img-top w-100 d-block" src="data:;base64,{{ image }}" style="padding: 20px;">
+                                    <div class="card-body info">
+                                        <div class="row" style="margin-top: -24px;">
+                                            <div class="col-md-12" style="margin-top: 22px;">
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Nombre</strong></p></div>
+                                                    <!--<div class="col"><p class="labels">Nombre Usuario</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.name(type="text", readonly="true", style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Usuario</strong></p></div>
+                                                    <!--<div class="col"><p class="labels">user_1</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.user(type="text", readonly="true", style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Email</strong></p></div>
+                                                    <!--<div class="col"><p class="labels">user@email.com</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.email(type="text", readonly="true", style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Fecha Nacimiento</strong></p></div>
+                                                    <!--<div class="col"><p class="labels">01/01/1990</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.date(type="date", readonly="true", style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Genero</strong></p></div>
+                                                    <!--<div class="col"><p class="labels">Masculino</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.gender(type="text", readonly="true", style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Descripción</strong><br></p></div>
+                                                    <!--<div class="col"><p class="labels">Lorem ipsum dolor sit amet, consectetur adiposicing elit<br></p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.description(type="text", readonly="true", style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Localización</strong><br></p></div>
+                                                    <!--<div class="col"><p class="labels">Colombia (Co)</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.localization(type="text", readonly="true", style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                      <div class="col-md-12"><a class="btn btn-success" role="button" href="/profile" style="width: 220.141px;height: 50px;margin-top: 12px;padding-top: 12px;border-radius: 10px;background: var(--bs-primary);border-color: var(--bs-blue);color: var(--bs-light);"><i class="fas fa-pencil-alt"></i>&nbsp;EDITAR PERFIL</a></div>
+                                                    </div>
+                                                    <!--<form action="" method="GET">
+                                                        <div class="col-md-12"><button class="btn btn-success" type="submit"><i class="fas fa-pencil-alt"></i>&nbsp;Editar</button></div>
+                                                        <div class="col-md-12">{{ form.update(class="btn btn-success", type="submit") }}</div> 
+                                                        <div class="col-md-12"><a class="btn btn-success" role="button" href="/profile"><i class="fas fa-pencil-alt"></i>&nbsp;Actualizar Perfil</button></div>                                                       
+                                                    </form>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col text-center" style="margin-top: 20px;">
+                                <h2 style="font-size: 24px;">Mis Publicaciones</h2>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col-sm-6 col-lg-4" style="width: 400.656px;">
+                                <div class="card clean-card text-center">
+                                  <section class="photo-gallery" style="margin-top: 0;">
+                                    <div class="container" style="padding: 0px;">
+                                        
+                                        <div class="container-fluid" style="padding: 0px;">
+                                            <div class="row mt-4 text-center" style="margin:0px">
+
+                                              {% for row in rows %}
+
+                                                <div class="item col-sm-2 col-md-5 mb-3" style="padding: 0px; margin-left:15px; margin-right:15px;">
+                                                    <a href="data:;base64,{{ lista_Fotos[ row['Post_ID'] ] }}" class="fancybox" data-fancybox="gallery1">
+                                                    <img src="data:;base64,{{ lista_Fotos[ row['Post_ID'] ] }}" width="100%" height="100%">
+                                                    </a>
+                                                </div>
+                                                
+                                                {% endfor %}
+
+                                            </div>                     
+                                        </div>
+                                        <div class="col">
+                                          <div class="row">
+                                              <div class="col-md-12"><a class="btn btn-success" role="button" href="/create_post" style="width: 220.141px;height: 50px;margin-top: 12px;padding-top: 12px;border-radius: 10px; background: var(--bs-primary);border-color: var(--bs-blue);color: var(--bs-light);"><i class="fas fa-photo-video"></i>&nbsp;CREAR PUBLICACION</a></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </section>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+
+
+
+
+            <div class="col-md-4" style="width: 600px;">
+                <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                    <div class="col text-center" style="margin-top: 20px;">
+                        <h2 style="font-size: 24px;">Publicaciones Populares</h2>
+                    </div>
+                </div>
+                <div class="card clean-card text-center"><div class="photo-gallery" border-radius="10px">
+                  <div class="container-fluid">
+
+                    <div class="px-lg-6">
+
+                      <div class="row">
+                        <!-- Gallery item -->
+                        <div>
+                          {% for row2 in rows2 %}
+                          <div class="row">
+                            {% for row3 in rows3 %}   
+                              {% if row2['Post_authorID'] == row3['Id'] %}                         
+                                <img style="height: 80px; width: 80px; padding: 10px;" class="rounded-circle" src="data:;base64,{{ lista_FotosPerfil[ row3['Id'] ] }}" alt="modal header">  
+                              {% endif %}  
+                            {% endfor %}
+                            <div class="col">
+                              <br>
+                              <div style="padding: 15px;"> <h5 class=" row" id="exampleModalLabel">{{ row2['Post_author'] }}</h5></div>                              
+                            </div>                            
+                          </div>
+                          <h5> <a href="#" class="text-dark">{{ rows['Post_title'] }}</a></h5>
+                          <div class="bg-white rounded shadow-sm"><img src="data:;base64,{{ lista_Posts[ row2['Post_ID'] ] }}" alt="" class="img-fluid card-img-top"></div>
+                          <p class="small text-muted mb-0" align="left">{{ row2['Post_description'] }}</p>   
+                          
+                          <form style="width: 510px; padding: 5px !important;" action="/" method="POST" id="form_comment" >
+                            <div class="col">  
+
+                              <div class="input-group" style="width: 510px;">
+                                <div class="row">{{ form.comment_box(class="form-control", type="text", style="width: 440px; height:60px", placeholder="Escribir comentario") }}</div>
+                                <span class="input-group-btn">
+                                  <div class="row">{{ form.send(class="btn btn-success", type="submit", style="height:60px; background: var(--bs-primary);border-color: var(--bs-blue);color: var(--bs-light);") }}</div>  
+                                </span>
+                              </div> 
+                                                           
+                            </div>             
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                              <table class="table my-0" id="table_comments" style="width: 500px;">
+                                  <tr>
+                                    {% for key, comentario in lista_comentarios.items() %}
+                                      <tr>
+                                          <td align="left"><b><u>{{ comentario.Comentador }}</b></u> {{ comentario.Comentario }}</td>
+                                          {% if User_Rol == 1 or User_Rol == 2 %}
+                                            <td><a href="/comentario_delete/{{ key }}">Eliminar</a></td>
+                                          {% endif %}        
+                                      </tr>
+                                    {% endfor %}
+                                  </tr>                                      
+                              </table>  
+                            </div>               
+                          </form>
+                          {% endfor %}       
+                          
+                        </div>
+                        <!-- End -->     
+      
+                      </div>
+                      <div class="py-5 text-right"><a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Mostrar Mas</a></div>
+                    </div>
+                  </div>
+                </div></div>
+            </div>
+            
+
+
+
+
+        </div>
+      </div>        
+    </section>
+{% endblock %}

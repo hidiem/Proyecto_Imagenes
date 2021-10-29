@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/" method="GET">
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px;">Regresar a Inicio</button> 
+    </form>
+{% endblock %}
+
+
+{% block contenido %}
+    <section class="contact-clean">
+        <form action="/" method="post" >
+            <h2 class="text-center">Contáctenos</h2>
+            <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="Nombre"></div>
+            <div class="mb-3"><input class="form-control is-invalid" type="email" name="email" placeholder="Correo electronico"><small class="form-text text-danger">Please enter a correct email address.</small></div>
+            <div class="mb-3"><textarea class="form-control" name="message" placeholder="Mensaje" rows="14"></textarea></div>
+            <button class="btn btn-primary text-center" type="submit" style="border-radius: 20px;width: 380.016px;">Enviar</button>            
+        </form>
+    </section>    
+{% endblock %}

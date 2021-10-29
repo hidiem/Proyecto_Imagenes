@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/" method="POST">
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px;">Regresar al Home</button> 
+    </form>
+{% endblock %}
+
+
+{% block contenido %}
+<section class="login-clean" style="min-height:680px; height: auto; padding: 50px;">
+    <form class="container" action="" id="form_post" method="POST" style="max-width: 600px" enctype=multipart/form-data>
+        <div>
+            <div class="col"><p class="text-start labels" style="margin-top:10px;"><strong>Titulo</strong></p></div>                                    
+            <div class="col">{{ form.title(class="form-control", type="text", style="width: 500px;height: auto;", placeholder="Escriba el Titulo del Post") }}</div>
+        </div>        
+
+        <div>
+            <div class="col"><p class="text-start labels" style="margin-top:10px;"><strong>Subir Imagen</strong></p></div>                                    
+            <div class="col">{{ form.picture(class="form-control", type="file", style="width: 500px;height: auto;") }}</div>
+        </div>  
+
+        <div>
+            <div class="col"><p class="text-start labels" style="margin-top:10px;"><strong>Descripción</strong></p></div>                                    
+            <div class="col">{{ form.description(class="form-control", type="text", style="width: 500px;height: 100px;", placeholder="Escriba la Descripción del Post") }}</div>
+        </div>
+       
+        <div>
+            <div class="col">{{ form.post(class="btn btn-success", type="submit", style="width: 480px; margin-top:10px; border-radius: 10px;color: var(--bs-white);") }}</div>
+        </div>
+    </form>
+</section>
+{% endblock %}

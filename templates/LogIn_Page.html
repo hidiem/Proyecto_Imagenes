@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/register" method="GET">
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px; width:150px;">Registrarse</button> 
+    </form>
+{% endblock %}
+
+
+{% block contenido %}
+    <section class="login-clean" style="padding: 50px 0px;">
+        <form action="#" method="POST" id="formulario_login" style="height: 580px;width: 400px;padding: 30px;">
+            {{ csrf_token }}
+            {{ form.hidden_tag() }}
+
+            <h2 class="visually-hidden">Login Form</h2>
+            <div class="illustration"><i class="icon ion-person"></i></div>
+            <!--<div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Correo electronico"></div>
+            <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Contraseña"></div>-->
+            <div class="mb-3">{{ form.user(class="form-control", id="user", type="text", required='required', placeholder="Usuario") }}</div>
+            <div class="mb-3">{{ form.password(class="form-control", id="password", type="password", required='required', placeholder="Contraseña") }}</div>
+
+            <!--<div class="mb-3"><button class="btn btn-primary d-block w-100 nav-link active" type="submit" style="border-radius: 10px;">Log In</button></div>-->
+            <div class="mb-3">{{ form.login(class="btn btn-primary d-block w-100 nav-link active", type="submit", style="border-radius: 10px;") }}</div>
+            <a class="forgot" href="#">Olvidaste tu email o contraseña?</a>
+            <a class="btn btn-primary w-100" role="button" style="border-radius: 10px;border-color: var(--bs-purple);background: var(--bs-pink);" href="/register">Crear Cuenta</a>
+        </form>
+    </section>    
+{% endblock %}
+
+
+{% block contact %} 
+    <li class="list-inline-item"><a href="/contact">Contáctenos</a></li>
+{% endblock %}

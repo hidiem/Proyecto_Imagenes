@@ -1,0 +1,551 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/logout" method="POST">
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px;">Cerrar Sesión</button> 
+    </form>
+{% endblock %}
+
+
+{% block busqueda %}
+  <div class="card clean-card text-center" style="background-color:transparent;box-shadow: none;border:0px;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+      <div class="container">
+        <form class="me-auto search-form" target="_self" style="min-width:300px; padding:10px;background: var(--bs-gray-200);border-radius: 20px;">
+          <div class="d-flex align-items-center">
+            <label class="form-label d-flex mb-0" for="search-field">
+              <i class="fa fa-search"></i>
+            </label>
+            <!--<input class="form-control search-field" type="search" id="search-field-1" name="search" style="height: 10px;padding: 9px 12px;">-->
+            {{ form.user_search(class="form-control search-field", type="text", id="search-field-1", style="height: 10px;padding: 9px 12px;") }}
+          </div>         
+        </form>
+        <form action="/search" method="POST" id="formulario_search_home">
+          <!--<button class="btn btn-light action-button" type="submit" style="margin-bottom: 0;">Buscar</button>-->
+          {{ form.search(class="btn btn-light action-button", type="submit", style="margin-bottom: 0;") }}
+        </form>            
+      </div>
+    </nav>
+  </div>  
+{% endblock %}
+
+
+{% block contenido %}
+    <section class="register-photo" style="height: auto;padding: 50px;">
+      <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <main class="page" style="min-height: 100%;">
+                    <section class="clean-block about-us">
+                        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col text-center" style="margin-top: 20px;">
+                                <h2 style="font-size: 24px;">Mis Datos</h2>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col-sm-6 col-lg-4" style="width: 400.656px;">
+                                <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="assets/img/logoComedor/avatar1.jpg" style="padding: 20px;">
+                                    <div class="card-body info">
+                                        <div class="row" style="margin-top: -24px;">
+                                            <div class="col-md-12" style="margin-top: 22px;">
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Nombre</strong></p></div>
+                                                    <!--<div class="col"><p class="labels">Nombre Usuario</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.name(style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Usuario</strong></p></div>
+                                                    <!--<div class="col"><p class="labels">user_1</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.user(style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Email</strong></p></div>
+                                                    <!--<div class="col"><p class="labels">user@email.com</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.email(style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Fecha Nacimiento</strong></p></div>
+                                                    <!--<div class="col"><p class="labels">01/01/1990</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.date(class="form-control", type="date", style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Genero</strong></p></div>
+                                                    <!--<div class="col"><p class="labels">Masculino</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.gender(style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Descripción</strong><br></p></div>
+                                                    <!--<div class="col"><p class="labels">Lorem ipsum dolor sit amet, consectetur adiposicing elit<br></p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.description(style="border: 0px;") }}<br></p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col"><p class="text-start labels"><strong>Localización</strong><br></p></div>
+                                                    <!--<div class="col"><p class="labels">Colombia (Co)</p></div>-->
+                                                    <div class="col"><p class="labels">{{ form.localization(style="border: 0px;") }}</p></div>
+                                                </div>
+                                                <div class="row">
+                                                    <form action="/profile" method="POST">
+                                                        <!--<div class="col-md-12"><button class="btn btn-success" type="submit"><i class="fas fa-pencil-alt"></i>&nbsp;Editar</button></div>-->
+                                                        <div class="col-md-12">{{ form.update(class="btn btn-success", type="submit") }}<i class="fas fa-pencil-alt"></i>&nbsp;Editar</div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col text-center" style="margin-top: 20px;">
+                                <h2 style="font-size: 24px;">Mis Publicaciones</h2>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center" style="margin-right: 0px;margin-left: 0px;">
+                            <div class="col-sm-6 col-lg-4" style="width: 400.656px;">
+                                <div class="card clean-card text-center">
+                                    <section class="photo-gallery">
+                                        <div class="container">
+                                            <div class="row photos" data-bss-baguettebox="">
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: 115.5px;"><a href="assets/img/desk.jpg"><img class="img-fluid" src="assets/img/desk.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: 115.5px;"><a href="assets/img/building.jpg"><img class="img-fluid" src="assets/img/building.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: 115.5px;"><a href="assets/img/loft.jpg"><img class="img-fluid" src="assets/img/loft.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: 115.5px;"><a href="assets/img/building.jpg"><img class="img-fluid" src="assets/img/building.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: 115.5px;"><a href="assets/img/loft.jpg"><img class="img-fluid" src="assets/img/loft.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: 115.5px;"><a href="assets/img/desk.jpg"><img class="img-fluid" src="assets/img/desk.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: 115.5px;"><a href="assets/img/loft.jpg"><img class="img-fluid" src="assets/img/loft.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: 115.5px;"><a href="assets/img/desk.jpg"><img class="img-fluid" src="assets/img/desk.jpg"></a></div>
+                                                <div class="col-sm-6 col-md-4 col-lg-3 item" style="width: 115.5px;"><a href="assets/img/building.jpg"><img class="img-fluid" src="assets/img/building.jpg"></a></div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+
+            <div class="col-md-4">
+                <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                    <div class="col text-center" style="margin-top: 20px;">
+                        <h2 style="font-size: 24px;">Publicaciones Populares</h2>
+                    </div>
+                </div>
+                <div class="card clean-card text-center"><div class="photo-gallery" border-radius="10px">
+                  <div class="container-fluid">
+  <div class="px-lg-6">
+
+    <div class="row">
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1051" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">Red Purple</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">PNG</span></p>
+              <div class="badge badge-primary px-3 rounded-pill font-weight-normal">Send</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+      
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1052" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">Blorange</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">PNG</span></p>
+              <div class="badge badge-primary px-3 rounded-pill font-weight-normal">Trend</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+    
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1053" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">And She Realized</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">JPG</span></p>
+              <div class="badge badge-warning px-3 rounded-pill font-weight-normal text-white">Featured</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+    
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1054" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">DOSE Juice</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">JPEG</span></p>
+              <div class="badge badge-success px-3 rounded-pill font-weight-normal">Hot</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1055" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">Pineapple</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">PNG</span></p>
+              <div class="badge badge-primary px-3 rounded-pill font-weight-normal">New</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1056" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">Yellow banana</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">JPG</span></p>
+              <div class="badge badge-warning px-3 rounded-pill font-weight-normal text-white">Featured</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1057" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">Teal Gameboy</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">JPEG</span></p>
+              <div class="badge badge-info px-3 rounded-pill font-weight-normal">Hot</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1058" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">Color in Guatemala.</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">PNG</span></p>
+              <div class="badge badge-warning px-3 rounded-pill font-weight-normal text-white">Featured</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1059" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">Red paint cup</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">JPG</span></p>
+              <div class="badge badge-danger px-3 rounded-pill font-weight-normal">New</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1060" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">Lorem ipsum dolor</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">PNG</span></p>
+              <div class="badge badge-primary px-3 rounded-pill font-weight-normal">Trend</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1061" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">Lorem ipsum dolor</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">JPG</span></p>
+              <div class="badge badge-warning px-3 rounded-pill font-weight-normal text-white">Featured</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+
+      <!-- Gallery item -->
+      <div>
+        <div class="bg-white rounded shadow-sm"><img src="https://unsplash.it/1800/900?image=1062" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">Lorem ipsum dolor</a></h5>
+            <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">JPEG</span></p>
+              <div class="badge badge-success px-3 rounded-pill font-weight-normal">Hot</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+
+    </div>
+    <div class="py-5 text-right"><a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Mostrar Mas</a></div>
+  </div>
+                  </div>
+                </div></div>
+            </div>
+            <div class="col-md-4" style="padding: 0px;">
+
+              <main class="page" style="min-height: 100%;">
+                <section class="clean-block about-us">
+                    <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                        <div class="col text-center" style="margin-top: 20px;">
+                            <h2 style="font-size: 24px;">Chat</h2>
+                        </div>
+                    </div>
+                    <!--
+                <div class="card clean-card text-center">
+                    <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+                        <div class="container">
+                            <form class="me-auto search-form" target="_self" style="padding:10px;background: var(--bs-gray-200);border-radius: 20px;">
+                                <div class="d-flex align-items-center">
+                                  <label class="form-label d-flex mb-0" for="search-field">
+                                    <i class="fa fa-search"></i>
+                                  </label>
+                                  <input class="form-control search-field" type="search" id="search-field-1" name="search" style="height: 10px;padding: 9px 12px;">
+                                </div>
+                            </form>
+                            <a class="btn btn-light action-button" role="button" href="/search" style="margin-bottom: 0;">Buscar</a>
+                        </div>
+                    </nav>
+                </div>
+                -->
+                <div class="card clean-card text-center"><div class="bootstrap_chat">
+                  <div class="container py-3 px-4">
+                    
+                    <!-- For demo purpose-->
+                    <header class="text-center">
+                      <h4 class=""></h4>
+                    </header>
+  
+                    <div class="row rounded-lg overflow-hidden shadow">
+                      <!-- Users box-->
+                      <div class="col-5 px-0">
+                        <div class="bg-white">
+  
+                          <div class="bg-gray px-2 py-2 bg-light">
+                            <p class="h6 mb-0 py-1">Recientes</p>
+                          </div>
+  
+                          <div class="messages-box">
+                            <div class="list-group rounded-0">
+                              <a class="list-group-item list-group-item-action active text-white rounded-0">
+                                <div class="media"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                                  <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                      <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">25 Dec</small>
+                                    </div>
+                                    <p class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                  </div>
+                                </div>
+                              </a>
+  
+                              <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                <div class="media"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                                  <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                      <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">14 Dec</small>
+                                    </div>
+                                    <p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur. incididunt ut labore.</p>
+                                  </div>
+                                </div>
+                              </a>
+  
+                              <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                <div class="media"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                                  <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                      <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">9 Nov</small>
+                                    </div>
+                                    <p class="font-italic text-muted mb-0 text-small">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                  </div>
+                                </div>
+                              </a>
+  
+                              <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                <div class="media"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                                  <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                      <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">18 Oct</small>
+                                    </div>
+                                    <p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                  </div>
+                                </div>
+                              </a>
+  
+                              <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                <div class="media"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                                  <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                      <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">17 Oct</small>
+                                    </div>
+                                    <p class="font-italic text-muted mb-0 text-small">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                  </div>
+                                </div>
+                              </a>
+  
+                              <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                <div class="media"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                                  <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                      <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">2 Sep</small>
+                                    </div>
+                                    <p class="font-italic text-muted mb-0 text-small">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                  </div>
+                                </div>
+                              </a>
+  
+                              <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                <div class="media"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                                  <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                      <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">30 Aug</small>
+                                    </div>
+                                    <p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                  </div>
+                                </div>
+                              </a>
+  
+                              <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                <div class="media"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                                  <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                      <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">21 Aug</small>
+                                    </div>
+                                    <p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                  </div>
+                                </div>
+                              </a>
+  
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Chat Box-->
+                      <div class="col-7 px-0">
+                        <div class="px-3 py-3 chat-box bg-white">
+                          <!-- Sender Message-->
+                          <div class="media w-100 mb-3"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                            <div class="media-body ml-3">
+                              <div class="bg-light rounded py-2 px-3 mb-2">
+                                <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
+                              </div>
+                              <p class="small text-muted">12:00 PM | Aug 13</p>
+                            </div>
+                          </div>
+  
+                          <!-- Reciever Message-->
+                          <div class="media w-100 ml-auto mb-3">
+                            <div class="media-body">
+                              <div class="bg-primary rounded py-2 px-3 mb-2">
+                                <p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
+                              </div>
+                              <p class="small text-muted">12:00 PM | Aug 13</p>
+                            </div>
+                          </div>
+  
+                          <!-- Sender Message-->
+                          <div class="media w-100 mb-3"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                            <div class="media-body ml-3">
+                              <div class="bg-light rounded py-2 px-3 mb-2">
+                                <p class="text-small mb-0 text-muted">Test, which is a new approach to have</p>
+                              </div>
+                              <p class="small text-muted">12:00 PM | Aug 13</p>
+                            </div>
+                          </div>
+  
+                          <!-- Reciever Message-->
+                          <div class="media w-100 ml-auto mb-3">
+                            <div class="media-body">
+                              <div class="bg-primary rounded py-2 px-3 mb-2">
+                                <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
+                              </div>
+                              <p class="small text-muted">12:00 PM | Aug 13</p>
+                            </div>
+                          </div>
+  
+                          <!-- Sender Message-->
+                          <div class="media w-100 mb-3"><img src="https://v.fastcdn.co/u/74372ac0/56819182-0-Artboard-136x.png" alt="user" width="50" class="rounded-circle">
+                            <div class="media-body ml-3">
+                              <div class="bg-light rounded py-2 px-3 mb-2">
+                                <p class="text-small mb-0 text-muted">Test, which is a new approach</p>
+                              </div>
+                              <p class="small text-muted">12:00 PM | Aug 13</p>
+                            </div>
+                          </div>
+  
+                          <!-- Reciever Message-->
+                          <div class="media w-100 ml-auto mb-3">
+                            <div class="media-body">
+                              <div class="bg-primary rounded py-2 px-3 mb-2">
+                                <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
+                              </div>
+                              <p class="small text-muted">12:00 PM | Aug 13</p>
+                            </div>
+                          </div>
+  
+                        </div>
+  
+                        <!-- Typing area -->
+                        <form action="#" class="bg-light">
+                          <div class="input-group">
+                            <input type="text" placeholder="Escribe tu mensaje" aria-describedby="button-addon2" class="form-control rounded-0 border-1 py-2 bg-light">
+                            <div class="input-group-append">
+                              <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+                            </div>
+                          </div>
+                        </form>
+  
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </section> 
+            </main>             
+                
+          </div>
+        </div>
+      </div>        
+    </section>
+{% endblock %}

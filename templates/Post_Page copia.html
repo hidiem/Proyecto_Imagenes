@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/home" method="POST">
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px;">Regresar al Home</button>
+    </form>
+{% endblock %}
+
+
+{% block contenido %}
+    <section class="contact-clean text-center">
+        <div class="card clean-card text-center" style="height: 500px;padding: 10px;margin-right: 200px;margin-left: 200px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card" style="margin-left: 50px;margin-right: 50px;">
+                            <div class="card-body">
+                                <h4 class="card-title">Titulo de la Publicación</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" style="height: 260px;">
+                        <div class="files color form-group mb-3" style="margin-right: 50px;margin-left: 50px;margin-top: 10px;"><input type="file" multiple name="files" /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card" style="margin-left: 50px;margin-right: 49px;">
+                            <div class="card-body">
+                                <h6 class="text-muted card-subtitle mb-2" style="font-weight: bold;">Descripción</h6>
+                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
+{% endblock %}

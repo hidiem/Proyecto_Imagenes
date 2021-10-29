@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+
+{% block botones %}
+    <form action="/" method="POST">
+        <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px; ">Regresar al Home</button> 
+    </form>
+{% endblock %}
+
+
+{% block contenido %}
+<section class="login-clean" style="min-height:680px; height: auto; padding: 50px;">
+    <form class="container" action="" id="form_mensaje" method="POST" style="max-width: 600px">
+        <div>
+            <div class="col"><p class="text-start labels"><strong>Mensajes</strong></p></div>                                    
+            <div class="col">{{ form.message_box(class="form-control", type="text", style="width: 500px;height: 100px;", placeholder="Escribir Mensaje", rows="14") }}</div>
+        </div>        
+
+        <div class="mb-3">
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" style="margin: 10px"><strong>Remitente</strong></label>
+                    {{ form.user1(class="form-control", type="text", style="width: 200px;") }}
+                </div>
+                <div class="col">
+                    <label class="form-label" style="margin: 10px"><strong>Destinatario</strong></label>
+                    {{ form.user2(class="form-control", type="text", style="width: 200px") }}
+                </div>
+            </div>       
+        </div>  
+       
+        <div>
+            <div class="col">{{ form.send(class="btn btn-success", type="submit", style="width: 180px; border-radius: 10px;color: var(--bs-white);") }}</div>
+        </div>
+        <div>
+            <table border="1" id="table_message" style="width: 500px;">
+                <tr>
+                    <th>Remitente</th> <th>Destinatario</th> <th>Mensaje</th> <th>Acciones</th>
+                </tr>
+                    {% for key, mensaje in lista_mensajes.items() %}
+                        <tr>
+                            <td>{{ mensaje.Remitente }}</td>
+                            <td>{{ mensaje.Destinatario }} </td> 
+                            <td>{{ mensaje.Mensaje }}</td>  
+                            <td><a href="/mensaje_delete/{{ key }}">Eliminar</a></td>          
+                        </tr>
+                    {% endfor %}
+            </table>        
+        </div>
+    </form>
+</section>
+{% endblock %}
