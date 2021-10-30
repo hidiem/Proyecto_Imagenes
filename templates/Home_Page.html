@@ -3,6 +3,9 @@
 
 {% block botones %}
     <form action="/logout" method="POST">
+      {% if User_Rol == 1 or User_Rol == 2 %}   
+        <button class="btn btn-light action-button" formaction="/dashboard" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px; width:150px;">Dashboard</button> 
+      {% endif %}   
         <button class="btn btn-light action-button" type="submit" style="font-size: 20px;padding: 4.8px 12.8px;margin-top: 15px; width:150px;">Cerrar Sesión</button> 
     </form>
 {% endblock %}
@@ -159,44 +162,56 @@
                           <div class="row">
                             {% for row3 in rows3 %}   
                               {% if row2['Post_authorID'] == row3['Id'] %}                         
-                                <img style="height: 80px; width: 80px; padding: 10px;" class="rounded-circle" src="data:;base64,{{ lista_FotosPerfil[ row3['Id'] ] }}" alt="modal header">  
+                                <img style="height: 75px; width: 75px; padding: 10px;" class="rounded-circle" src="data:;base64,{{ lista_FotosPerfil[ row3['Id'] ] }}" alt="modal header">  
                               {% endif %}  
-                            {% endfor %}
-                            <div class="col">
-                              <br>
-                              <div style="padding: 15px;"> <h5 class=" row" id="exampleModalLabel">{{ row2['Post_author'] }}</h5></div>                              
+                            {% endfor %}                            
+                            <div class="col">                            
+                              <div class=" row"> <h5 align="left" id="exampleModalLabel">{{ row2['Post_author'] }}</h5></div>     
+                              <div class="row">
+                                {% if User_Rol == 1 or User_Rol == 2 %}    
+                                  <a align="left" href="/post_delete/{{ row2['Post_ID'] }}">Eliminar Post</a>    
+                                {% endif %}
+                              </div>                       
                             </div>                            
                           </div>
-                          <h5> <a href="#" class="text-dark">{{ rows['Post_title'] }}</a></h5>
-                          <div class="bg-white rounded shadow-sm"><img src="data:;base64,{{ lista_Posts[ row2['Post_ID'] ] }}" alt="" class="img-fluid card-img-top"></div>
-                          <p class="small text-muted mb-0" align="left">{{ row2['Post_description'] }}</p>   
+                          <u><h5 class="text-dark" style="margin-bottom: 0px; ">{{ row2['Post_title'] }}</h5></u>
+                          <div class="bg-white rounded shadow-sm">
+                            <a href="data:;base64,{{ lista_Posts[ row2['Post_ID'] ] }}" class="fancybox" data-fancybox="gallery1">
+                            <img src="data:;base64,{{ lista_Posts[ row2['Post_ID'] ] }}" width="100%" height="100%">
+                            </a>
+                          </div>                        
+                          <p class="text-muted mb-0" align="left" style="margin-bottom: 10px !important;">{{ row2['Post_description'] }}</p>   
                           
-                          <form style="width: 510px; padding: 5px !important;" action="/" method="POST" id="form_comment" >
+                          <form class="container border border-secondary rounded" style="width: 510px; padding: 5px !important;" action="/comment/create/{{ row2['Post_ID'] }}" method="POST" id="form_comment" >
                             <div class="col">  
 
                               <div class="input-group" style="width: 510px;">
-                                <div class="row">{{ form.comment_box(class="form-control", type="text", style="width: 440px; height:60px", placeholder="Escribir comentario") }}</div>
+                                <div class="row">{{ form.comment_box(class="form-control", type="text", style="width: 420px; height:60px; margin-left:12px;", placeholder="Escribir comentario") }}</div>
                                 <span class="input-group-btn">
                                   <div class="row">{{ form.send(class="btn btn-success", type="submit", style="height:60px; background: var(--bs-primary);border-color: var(--bs-blue);color: var(--bs-light);") }}</div>  
+                                  
                                 </span>
                               </div> 
                                                            
                             </div>             
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                            <div class="table-responsive table mt-2" style=" margin: 2px !important;" id="dataTable" role="grid" aria-describedby="dataTable_info">
                               <table class="table my-0" id="table_comments" style="width: 500px;">
-                                  <tr>
-                                    {% for key, comentario in lista_comentarios.items() %}
-                                      <tr>
-                                          <td align="left"><b><u>{{ comentario.Comentador }}</b></u> {{ comentario.Comentario }}</td>
+                                <tr>
+                                  {% for row4 in rows4 %}
+                                    <tr>
+                                        {% if row2["Post_ID"] == row4["Comment_postID"] %}
+                                          <td align="left"><b><u>{{ row4["Comment_author"] }}</b></u> {{ row4["Comment_content"] }}</td>
                                           {% if User_Rol == 1 or User_Rol == 2 %}
-                                            <td><a href="/comentario_delete/{{ key }}">Eliminar</a></td>
-                                          {% endif %}        
-                                      </tr>
-                                    {% endfor %}
-                                  </tr>                                      
+                                            <td><a href="/comentario_delete/{{ row4['Comment_ID'] }}">Eliminar</a></td>
+                                          {% endif %}   
+                                        {% endif %}     
+                                    </tr>
+                                  {% endfor %}
+                                </tr>                                     
                               </table>  
                             </div>               
-                          </form>
+                          </form>                          
+                          <hr class="mt-3 mb-3"/>
                           {% endfor %}       
                           
                         </div>

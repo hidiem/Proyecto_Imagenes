@@ -1,5 +1,5 @@
 from flask import Flask, render_template as render, redirect, url_for, request, session, flash
-from Formularios import form_Home, form_Login, form_Signup, form_Results, form_EditProfile, form_Message, form_EditProfile, form_PublicProfile, form_Post
+from Formularios import form_Home, form_Login, form_Signup, form_Results, form_EditProfile, form_Message, form_EditProfile, form_PublicProfile, form_Post, form_Dashboad
 from markupsafe import escape
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
@@ -64,7 +64,7 @@ def inicio():
           lista_Fotos[ row['Post_ID'] ] = b64encode( row["Post_photo"] ).decode("utf-8") 
 
         cur = con.cursor()
-        cur.execute("select * from Posts order by Post_ID desc limit 20")
+        cur.execute("select * from Posts order by Post_ID desc limit 40")
         rows2 = cur.fetchall()
 
         lista_Posts = {}
@@ -79,11 +79,91 @@ def inicio():
         for row3 in rows3:          
           lista_FotosPerfil[ row3['Id'] ] = b64encode( row3["Photo"] ).decode("utf-8")
 
+        cur = con.cursor()
+        cur.execute("select * from Comments order by Comment_ID desc")
+        rows4 = cur.fetchall()
+        #for row4 in rows4:
+          #print(row4["Comment_content"])
+
     except:
       con.rollback()
-    return render("Home_Page.html", form = form, User_Rol=User_Rol, image = image, User_Name=User_Name, rows3=rows3, lista_FotosPerfil=lista_FotosPerfil, rows2=rows2, lista_Posts=lista_Posts, lista_comentarios = lista_comentarios, rows= rows, lista_Fotos = lista_Fotos)
+    return render("Home_Page.html", form = form, User_Rol=User_Rol, image = image, User_Name=User_Name, rows3=rows3, lista_FotosPerfil=lista_FotosPerfil, rows2=rows2, lista_Posts=lista_Posts, lista_comentarios = lista_comentarios, rows= rows, rows4=rows4, lista_Fotos = lista_Fotos)
   else:
     return render("Inicio_Page.html")
+
+
+@app.route('/comment/create/<postID>', methods = ["GET", "POST"])
+def comentario(postID):
+  global User_Name
+  User_Name = session['User']
+  form = form_Home()
+  comentario = form.comment_box.data
+
+  date_now=datetime.now()
+  date_format=date_now.strftime('%d/%m/%Y, %H:%M')  
+
+  try:
+    with sqlite3.connect("DataBase.db") as con:
+      print("Hizo la coneccion")
+      con.row_factory=sqlite3.Row
+      cur = con.cursor()
+      cur.execute("select * from FinalUsers where User = ?",[User_Name])
+      row = cur.fetchone()
+      user_id = row["Id"]
+      user_name = row["Name"]   
+      #form.date.data = datetime.strptime(row["Date"], '%Y-%m-%d')
+          
+      cur = con.cursor()
+      if comentario != None:
+        cur.execute("insert into Comments(Comment_postID, Comment_content, Comment_author, Comment_date) values (?, ?, ?, ?)", (postID, comentario, user_name, date_format))
+      con.commit()
+      #return render('EditProfile_Page.html', form = form, User_Name = User_Name)
+      flash("Comentario Creado Exitosamente", "primary") 
+      
+      return redirect('/')
+        
+  except:
+    con.rollback()
+    
+  return redirect('/')
+
+
+#RUTA Eliminar comentario
+@app.route("/comentario_delete/<commentID>", methods = ["GET","POST"])
+def eliminar_comentario(commentID):
+  try:
+      with sqlite3.connect("DataBase.db") as con:
+        cur = con.cursor()
+        cur.execute("delete from Comments where Comment_ID = ?",[commentID])
+        con.commit()
+        if con.total_changes > 0:
+          flash("Comentario Borrado Exitosamente", "primary")
+
+          return redirect("/")            
+  
+  except:
+    con.rollback()
+  
+  return redirect("/")
+
+
+#RUTA Eliminar comentario
+@app.route("/post_delete/<postID>", methods = ["GET","POST"])
+def eliminar_post(postID):
+  try:
+      with sqlite3.connect("DataBase.db") as con:
+        cur = con.cursor()
+        cur.execute("delete from Posts where Post_ID = ?",[postID])
+        con.commit()
+        if con.total_changes > 0:
+          flash("Post Borrado Exitosamente", "primary")
+
+          return redirect("/")            
+  
+  except:
+    con.rollback()
+  
+  return redirect("/")
 
 
 #Ruta Pagina de Inicio (cerrar sesion)
@@ -388,7 +468,7 @@ def eliminar_usuario(user):
       cur.execute("delete from FinalUsers where User = ?",[user])
       con.commit()
       if con.total_changes > 0:
-        return redirect("/")
+        return redirect("/dashboard")
  
   except:
       con.rollback()
@@ -399,7 +479,40 @@ def eliminar_usuario(user):
 #Ruta Acceder a Dashboard
 @app.route("/dashboard", methods = ["GET", "POST"])
 def entrar_dashboard():
-  return render('index.html')
+  form = form_Dashboad
+  Usuarios = 0
+  Publicaciones = 0
+  Comentarios = 0
+  Mensajes = 0
+
+  try:
+    with sqlite3.connect("DataBase.db") as con:
+      con.row_factory=sqlite3.Row
+      cur = con.cursor()
+      cur.execute("select * from FinalUsers order by Id desc")       
+      rows = cur.fetchall()
+
+      lista_FotosPerfil = {}
+      for row in rows:          
+        lista_FotosPerfil[ row['User'] ] = b64encode( row["Photo"] ).decode("utf-8")    
+        Usuarios = Usuarios + 1        
+
+      cur = con.cursor()
+      cur.execute("select * from Posts")      
+      rows2 = cur.fetchall()      
+      for row2 in rows2: 
+        Publicaciones = Publicaciones + 1         
+
+      cur = con.cursor()
+      cur.execute("select * from Comments")      
+      rows3 = cur.fetchall()
+      for row3 in rows3: 
+        Comentarios = Comentarios + 1
+
+  except:
+    con.rollback()    
+  
+  return render('index.html', form = form, rows = rows, lista_FotosPerfil = lista_FotosPerfil, Usuarios=Usuarios, Publicaciones=Publicaciones, Comentarios=Comentarios)
 
 
 #Ruta Contactenos
@@ -450,11 +563,11 @@ def comentar_publicacion():
 
 
 #RUTA Eliminar comentario
-@app.route("/comentario_delete/<keycomment>", methods = ["GET","POST"])
-def eliminar_comentario(keycomment):
-  global lista_comentarios
-  del lista_comentarios[keycomment]
-  return redirect("/")
+#@app.route("/comentario_delete/<keycomment>", methods = ["GET","POST"])
+#def eliminar_comentario(keycomment):
+#  global lista_comentarios
+#  del lista_comentarios[keycomment]
+#  return redirect("/")
 
 #EJECUCION INICIAL
 @app.before_request

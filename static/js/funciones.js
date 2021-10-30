@@ -22,12 +22,16 @@ function enviar_mensaje(){
     document.getElementById("form_message").action ='/mensaje_send';
 }
 
-function comentar_post(){
+/*function comentar_post(){
     document.getElementById("form_comment").action ='/publicacion_comment';
+}*/
+
+function comentar_post(){
+    document.getElementById("form_comment").action ='/comment/create/' + postID;
 }
 
 function eliminar_comentario(){    
-    document.getElementById("eliminar_post").action ='/comentario_delete/' + keycomment;
+    document.getElementById("eliminar_post").action ='/comentario_delete/' + commentID;
 }
 
 function crear_post(){    

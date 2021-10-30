@@ -12,7 +12,6 @@ class form_Signup(FlaskForm):
     user = StringField("Usuario: ", validators=[DataRequired(message="No Dejar Vacio, Completar")])
     email = StringField("Correo Electronico: ", validators=[DataRequired(message="No Dejar Vacio, Completar")])
     password = PasswordField("Contraseña: ", validators=[DataRequired(message="No Dejar Vacio, Completar"), Length(min=8), EqualTo('password2', message='Las contraseñas no son iguales')]) 
-    password2 = PasswordField("Contraseña (repetir): ", validators=[DataRequired(message="No Dejar Vacio, Completar"), Length(min=8)]) 
     date = DateField("Fecha: ", validators=[DataRequired(message="No Dejar Vacio, Completar")])
     gender = SelectField("Genero: ", choices=[("Masculino"),("Femenino"),("Otro")])
     signup = SubmitField("Crear Cuenta", render_kw={"onmouseover":"crear_usuario()"})
@@ -70,3 +69,11 @@ class form_Post(FlaskForm):
     description = TextAreaField("Descripción: ", validators=[DataRequired(message="No Dejar Vacio, Completar")])
     picture = FileField("Imagen")
     post = SubmitField("Publicar Fotos", render_kw={"onmouseover":"crear_post()"})
+
+class form_Dashboad(FlaskForm):
+    user_search2 = StringField("Hola: ", validators=[DataRequired(message="No Dejar Vacio, Completar")])
+    search2 = SubmitField("Buscar Usuario", render_kw={"onmouseover":"buscar_usuario()"})
+    users = StringField("Usuarios: ")
+    posts = StringField("Publicaciones: ")
+    comments = StringField("Comentarios")
+    messages = StringField("Mensajes")    
